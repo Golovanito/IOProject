@@ -1,0 +1,2 @@
+# NewsService
+University group project.
