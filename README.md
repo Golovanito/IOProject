@@ -1,5 +1,5 @@
 # Aplikacja webowa `IOProjekt`
-Projekt na Inżynierię programowania, kierunek Nowoczene Technologie w Kryminalistyce, sem. V, grupa I, piątek 13:15
+Projekt na Inżynierię programowania, kierunek Nowoczene Technologie w Kryminalistyce, sem. V, grupa I
 
 ## 📋 Opis projektu
 `IOProjekt` to  aplikacja webowa stworzona w Pythonie z wykorzystaniem frameworka **Flask** oraz kaskadowych arkuszy stylów **Bootstrap**. Projekt pokazuje, jak można stworzyć wielomodułową aplikację webową z obsługą zewnętrznego API, systemem logowania użytkowników oraz integracją z bazą danych.
@@ -445,10 +445,4 @@ Przykładowy endpoint:
 Projekt jest udostępniony na licencji MIT. Szczegóły znajdziesz w pliku [LICENSE](LICENSE).
 
 ---
-
-## ❓ Kontakt
-
-Jeśli masz pytania lub problemy, napisz na:
-- GitHub: [https://github.com/JakubBukowski](https://github.com/JakubBukowski)
-
 
