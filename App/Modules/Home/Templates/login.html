@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <div class="row h-100" id="back">
+    <div class="col d-flex flex-column justify-content-center align-items-center">
+      <div class="row text-center p-4" id="square">
+        <h2>Logowanie</h2>
+        <form method="POST" action="">
+          {{ form.hidden_tag() }}
+          <p>
+            {{ form.username.label }}<br>
+            {{ form.username(style="width: 80%;") }}<br>
+          </p>
+          <p>
+            {{ form.password.label }}<br>
+            {{ form.password(style="width: 80%;") }}<br>
+          </p>
+          <p>
+            {{ form.remember() }} {{ form.remember.label }}
+          </p>
+          <p>{{ form.submit(class="btn active", id="btn-log") }}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

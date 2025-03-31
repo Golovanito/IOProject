@@ -1,0 +1,248 @@
+/* Stylizacja ogólna */
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Kontener kalendarza */
+.calendar-container {
+    width: 100%;
+    max-width: 50vw;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 1vw;
+    background-color: #fffde7;
+    padding: 0.5vw; /* Padding */
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1);
+    border: 0.2vw solid #000;
+}
+
+/* Przyciski nawigacji */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1vw; /* Margines */
+}
+
+.month-button {
+    flex: 1;
+    margin: 0.25vw; /* Marginesy */
+    padding: 0.3vw 0.8vw; /* Padding */
+    cursor: pointer;
+    background-color: #ffeb3b;
+    border: 0.2vw solid black;
+    color: black;
+    border-radius: 1vw;
+    font-size: 0.9vw; /* Wielkość czcionki */
+    font-weight: bold;
+    transition: box-shadow 0.3s ease;
+}
+
+.month-button:hover {
+    background-color: #ffa726;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.5);
+}
+
+/* Kalendarz */
+#calendar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 kolumn */
+    gap: 0.3vw; /* Odstępy między dniami */
+    margin-top: 1vw; /* Margines górny */
+    border: 0.2vw solid black;
+    background-color: #b3cde0;
+    padding: 0.5vw; /* Padding */
+    border-radius: 1vw;
+}
+
+/* Dni tygodnia */
+.day-of-week {
+    background: linear-gradient(to bottom, #ffeb3b, #ffa726);
+    color: black;
+    font-weight: bold;
+    font-family: 'Ariel', sans-serif;
+    pointer-events: none;
+    cursor: default;
+    padding: 0.1vw; /* Padding */
+    font-size: 0.4vw; /* Wielkość czcionki */
+}
+
+/* Dni */
+.day {
+    width: 100%;
+    padding: 0.1vw; /* Padding */
+    text-align: center;
+    border: 0.2vw solid #ccc;
+    border-radius: 0.3vw;
+    cursor: pointer;
+    font-size: 0.5vw; /* Wielkość czcionki */
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+}
+
+/* Dzisiejszy dzień */
+.today {
+    background-color: #7fe65f;
+}
+
+/* Sobota */
+.saturday {
+    background-color: #d4edda;
+}
+
+/* Niedziela */
+.sunday {
+    background-color: #ffcccb;
+}
+
+/* Dni robocze */
+.workday {
+    background-color: #f0f0f0;
+}
+
+/* Kontener informacji */
+.info-container {
+    margin-top: 0.5vw; /* Margines górny */
+    padding: 0.5vw; /* Padding */
+    border: 0.2vw solid #000;
+    background-color: #b3cde0;
+    text-align: center;
+    border-radius: 1vw;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1);
+}
+
+.info-container .date-info {
+    font-size: 0.5vw; /* Wielkość czcionki */
+    margin-bottom: 0.5vw; /* Margines */
+}
+
+/* Miesiąc i rok */
+.month-year {
+    font-size: 1.5vw; /* Wielkość czcionki */
+    font-weight: bold;
+    margin-top: 0.5vw; /* Margines górny */
+    margin-bottom: 0.5vw; /* Margines dolny */
+}
+
+
+
+@media (max-width: 1675px) {
+
+    /* Kontener kalendarza */
+    .calendar-container {
+        width: 100%;
+        max-width: 50vw;
+        padding: 0.1vw; /* Padding */
+    }
+    
+    /* Przyciski nawigacji */
+    .navigation-buttons {
+        margin-bottom: 1vw; /* Margines */
+    }
+    
+    .month-button {
+        margin: 0.2vw; /* Marginesy */
+        padding: 0.1vw 0.9vw; /* Padding */
+        font-size: 0.5vw; /* Wielkość czcionki */
+    }
+
+    /* Kalendarz */
+    #calendar {
+        gap: 0.3vw; /* Odstępy między dniami */
+        margin-top: 1vw; /* Margines górny */
+        padding: 0.5vw; /* Padding */
+        border-radius: 1vw;
+    }
+    
+    /* Dni tygodnia */
+    .day-of-week {
+        padding: 0.1vw; /* Padding */
+        font-size: 0.25px; /* Wielkość czcionki */
+    }
+    
+    /* Dni */
+    .day {
+        padding: 0.1vw; /* Padding */
+        font-size: 0.5vw; /* Wielkość czcionki */
+    }
+
+    /* Kontener informacji */
+    .info-container {
+        margin-top: 0.5vw; /* Margines górny */
+        padding: 0.5vw; /* Padding */
+    }
+    
+    .info-container .date-info {
+        font-size: 0.5vw; /* Wielkość czcionki */
+        margin-bottom: 0.5vw; /* Margines */
+    }
+    
+    /* Miesiąc i rok */
+    .month-year {
+        font-size: 1.5vw; /* Wielkość czcionki */
+        margin-top: 0.5vw; /* Margines górny */
+        margin-bottom: 0.5vw; /* Margines dolny */
+    }
+}
+
+
+
+@media (max-width: 990px) {
+
+    /* Kontener kalendarza */
+    .calendar-container {
+        max-width: clamp(300px, 100%, 500px);
+        padding: clamp(10px, 2vw, 30px); /* padding */
+    }
+    
+    /* Przyciski nawigacji */
+    .navigation-buttons {
+        margin-bottom: clamp(5px, 1vw, 15px); /* margines */
+    }
+    
+    .month-button {
+        margin: clamp(2px, 0.25vw, 5px); /* marginesy */
+        padding: clamp(5px, 0.5vw, 10px) clamp(10px, 1vw, 20px); /* padding */
+        font-size: clamp(12px, 1.8vw, 18px); /* wielkość czcionki */
+    }
+    
+    /* Kalendarz */
+    #calendar {
+        gap: clamp(2px, 1vw, 10px); /* odstępy między dniami */
+        margin-top: clamp(5px, 2vw, 15px); /* margines górny */
+        padding: clamp(5px, 1vw, 10px); /* padding */
+    }
+    
+    /* Dni tygodnia */
+    .day-of-week {
+        padding: clamp(5px, 1vw, 10px);
+        font-size: clamp(10px, 1.3vw, 16px);
+    }
+    
+    /* Dni */
+    .day {
+        padding: clamp(5px, 0.5vw, 10px);
+        font-size: clamp(10px, 2vw, 18px); /* wielkość czcionki */
+    }
+    
+    /* Kontener informacji */
+    .info-container {
+        margin-top: clamp(5px, 1vw, 20px); /* margines górny */
+        padding: clamp(10px, 1vw, 30px); /* padding */
+    }
+    
+    .info-container .date-info {
+        font-size: clamp(12px, 1.8vw, 24px); /* wielkość czcionki */
+        margin-bottom: clamp(5px, 1vw, 15px); /* margines */
+    }
+    
+    /* Miesiąc i rok */
+    .month-year {
+        font-size: clamp(16px, 3vw, 32px); /* wielkość czcionki */
+        margin-top: clamp(5px, 1vw, 20px); /* margines górny */
+        margin-bottom: clamp(5px, 1vw, 20px); /* margines dolny */
+    }
+}

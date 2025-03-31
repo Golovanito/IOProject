@@ -1,0 +1,12 @@
+
+
+
+<h1 class="mt-2">Wiadomości Kryminalne z Krakowa</h1>
+<form action="{{ url_for('news.search') }}" method="GET">
+    <div class="input-group mt-3">
+        <input type="text" class="form-control" name="q" placeholder="Wyszukaj słowo-klucz" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Szukaj</button>
+    </div>
+    
+</form>
+

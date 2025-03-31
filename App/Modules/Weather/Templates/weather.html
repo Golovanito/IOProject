@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Weather Service
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('weather.static', filename='style.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('weather.static', filename='home.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <main>
+        <div class="container">
+            <h1>Serwis Pogodowy</h1>
+            <p id="alerts" style="color: red; text-align: center;"></p>
+            <div class="column low-res-col">
+                <div class="selectContainer selectContainerShow row" id="selectContainer1">
+                    <input id="citySelect1" list="cityList" value="{{data.1}}"/>
+                    <button class="inputButton" id="inputButton1" value="1" onclick="hideSelectContainer(this)">Usuń</button>
+                </div>
+                
+                <div class="selectContainer selectContainerShow row" id="selectContainer2">
+                    <input id="citySelect2" list="cityList" value="{{data.2}}"/>
+                    <button class="inputButton" id="inputButton2" value="2" onclick="hideSelectContainer(this)">Usuń</button>
+                </div>
+
+                <div class="selectContainer selectContainerShow row" id="selectContainer3">
+                    <input id="citySelect3" list="cityList" value="{{data.3}}"/>
+                    <button class="inputButton" id="inputButton3" value="3" onclick="hideSelectContainer(this)">Usuń</button>
+                </div>
+
+                <div class="selectContainer selectContainerShow row" id="selectContainer4">
+                    <input id="citySelect4" list="cityList" value="{{data.4}}"/>
+                    <button class="inputButton" id="inputButton4" value="4" onclick="hideSelectContainer(this)">Usuń</button>
+                </div>
+
+                <div class="selectContainer selectContainerShow row" id="selectContainer5">
+                    <input id="citySelect5" list="cityList" value="{{data.5}}"/>
+                    <button class="inputButton" id="inputButton5" value="5" onclick="hideSelectContainer(this)">Usuń</button>
+                </div>
+            </div>
+            <button class="inputButton" onclick="setWeatherData()">
+                Odśwież
+            </button>
+            <datalist id="cityList">
+                <option value="Białystok"></option>
+                <option value="Chojnice"></option>
+                <option value="Częstochowa"></option>
+                <option value="Elbląg"></option>
+                <option value="Gdańsk"></option>
+                <option value="Hel"></option>
+                <option value="Jelenia Góra"></option>
+                <option value="Kalisz"></option>
+                <option value="Katowice"></option>
+                <option value="Kętrzyn"></option>
+                <option value="Kielce"></option>
+                <option value="Kłodzko"></option>
+                <option value="Koło"></option>
+                <option value="Kołobrzeg"></option>
+                <option value="Koszalin"></option>
+                <option value="Kozienice"></option>
+                <option value="Kraków"></option>
+                <option value="Krosno"></option>
+                <option value="Legnica"></option>
+                <option value="Lesko"></option>
+                <option value="Leszno"></option>
+                <option value="Lębork"></option>
+                <option value="Lublin"></option>
+                <option value="Łeba"></option>
+                <option value="Łódź"></option>
+                <option value="Mikołajki"></option>
+                <option value="Mława"></option>
+                <option value="Nowy Sącz"></option>
+                <option value="Olsztyn"></option>
+                <option value="Opole"></option>
+                <option value="Ostrołęka"></option>
+                <option value="Piła"></option>
+                <option value="Platforma"></option>
+                <option value="Płock"></option>
+                <option value="Poznań"></option>
+                <option value="Przemyśl"></option>
+                <option value="Racibórz"></option>
+                <option value="Resko"></option>
+                <option value="Rzeszów"></option>
+                <option value="Sandomierz"></option>
+                <option value="Siedlce"></option>
+                <option value="Słubice"></option>
+                <option value="Sulejów"></option>
+                <option value="Suwałki"></option>
+                <option value="Szczecin"></option>
+                <option value="Szczecinek"></option>
+                <option value="Świnoujście"></option>
+                <option value="Tarnów"></option>
+                <option value="Terespol"></option>
+                <option value="Toruń"></option>
+                <option value="Ustka"></option>
+                <option value="Warszawa"></option>
+                <option value="Wieluń"></option>
+                <option value="Włodawa"></option>
+                <option value="Wrocław"></option>
+                <option value="Zakopane"></option>
+                <option value="Zamość"></option>
+                <option value="Zielona Góra"></option>
+            </datalist>
+
+            <button class="inputButton" onclick="showSelectContainer()">Dodaj miasto</button>
+            
+            <div class="row orang">
+                <div id="dataContainer1" class="column low-res-col">
+                    <button id="modal-button-1" class="weather-container" value="openweathermap-widget-15-1" onclick="showModal(this)">
+                        <div id="openweathermap-widget-container1">
+                            <div id="openweathermap-widget-15-1"></div>
+                        </div>
+                    </button>
+                    <div class="column low-res-col">
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate11"></p>
+                            <p id="forecast11"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate12"></p>
+                            <p id="forecast12"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate13"></p>
+                            <p id="forecast13"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate14"></p>
+                            <p id="forecast14"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate15"></p>
+                            <p id="forecast15"></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="dataContainer2" class="column low-res-col">
+                    <button id="modal-button-2" class="weather-container" value="openweathermap-widget-15-2" onclick="showModal(this)">
+                        <div id="openweathermap-widget-container2">
+                            <div id="openweathermap-widget-15-2"></div>
+                        </div>
+                    </button>
+                    <div class="column low-res-col">
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate21"></p>
+                            <p id="forecast21"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate22"></p>
+                            <p id="forecast22"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate23"></p>
+                            <p id="forecast23"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate24"></p>
+                            <p id="forecast24"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate25"></p>
+                            <p id="forecast25"></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="dataContainer3" class="column low-res-col">
+                    <button id="modal-button-3" class="weather-container" value="openweathermap-widget-15-3" onclick="showModal(this)">
+                        <div id="openweathermap-widget-container3">
+                            <div id="openweathermap-widget-15-3"></div>
+                        </div>
+                    </button>
+                    <div class="column low-res-col">
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate31"></p>
+                            <p id="forecast31"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate32"></p>
+                            <p id="forecast32"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate33"></p>
+                            <p id="forecast33"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate34"></p>
+                            <p id="forecast34"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate35"></p>
+                            <p id="forecast35"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dataContainer4" class="column low-res-col">
+                    <button id="modal-button-4" class="weather-container" value="openweathermap-widget-15-4" onclick="showModal(this)">
+                        <div id="openweathermap-widget-container4">
+                            <div id="openweathermap-widget-15-4"></div>
+                        </div>
+                    </button>
+                    <div class="column low-res-col">
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate41"></p>
+                            <p id="forecast41"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate42"></p>
+                            <p id="forecast42"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate43"></p>
+                            <p id="forecast43"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate44"></p>
+                            <p id="forecast44"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate45"></p>
+                            <p id="forecast45"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dataContainer5" class="column low-res-col">
+                    <button id="modal-button-5" class="weather-container" value="openweathermap-widget-15-5" onclick="showModal(this)">
+                        <div id="openweathermap-widget-container5">
+                            <div id="openweathermap-widget-15-5"></div>
+                        </div>
+                    </button>
+                    <div class="column low-res-col">
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate51"></p>
+                            <p id="forecast51"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate52"></p>
+                            <p id="forecast52"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate53"></p>
+                            <p id="forecast53"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate54"></p>
+                            <p id="forecast54"></p>
+                        </div>
+                        <div class="row">
+                            <p class="forecastDate" id="forecastDate55"></p>
+                            <p id="forecast55"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="weatherModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2 id="modalCity"></h2>
+                    <p><strong>Temperatura:</strong> <span id="modalTemp"></span></p>
+                    <p><strong>Stan:</strong> <span id="modalCondition"></span></p>
+                    <p><strong>Śnieg:</strong> <span id="modalSnow"></span></p>
+                    <p><strong>Deszcz:</strong> <span id="modalRain"></span></p>
+                    <p><strong>Ciśnienie:</strong> <span id="modalPressure"></span></p>
+                    <p><strong>Wilgotność:</strong> <span id="modalHumidity"></span></p>
+                    <p><strong>Prędkość wiatru:</strong> <span id="modalWindSpeed"></span></p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

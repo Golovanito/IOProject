@@ -1,0 +1,270 @@
+*{
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}   
+ 
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #224F75;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+
+main{
+    width: auto;
+}
+
+
+.service-text h1{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    color: white;
+}
+
+
+
+.service-data{
+    width: fit-content;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.select-input{
+    width: 320px;
+    height: 55px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.service-choice{
+    gap: 10px;
+    margin: 10px 0px 20px 0px;
+    margin-left: 10px;
+    width: auto;
+    margin-right: 10px;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: rgb(220, 220, 220);
+}
+
+.currencies-main-view{
+    display: flex;
+    flex-direction: row;
+    gap:1em;
+}
+
+.service-choice .btn {
+    flex: 1;
+}
+
+.service-currency{
+    align-items: center;
+    margin: 10px 0px 20px 0px;
+    padding: 0;
+}
+
+.exchange{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  
+}
+.select-currencies-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.switch-button {
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+}
+
+.service-buttons {
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+}
+
+.section1{
+    width: 80%;
+    margin-top: 10px;
+}
+
+.section2{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding:0;
+}
+
+
+.service-live-text h2{
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.text1{
+    color: white;
+}
+
+#chartContainer {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.currency-row {
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.currency-row:nth-child(even) {
+    background-color: white;
+}
+
+.currency-active {
+    background-color: #FACF55;
+    color: black;
+}
+
+#convertButton {
+    background-color: #224F75;
+    color: white;
+   
+}
+
+#convertButton:hover {
+    background-color: #16334b;
+}
+
+#conversionResult {
+    color: white;
+}
+
+.currency-change {
+    color: #28a745;
+    background-color: #e6f4ea;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.preview-div{
+    gap: 100px;
+}
+
+.gold-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gold-text{
+    background-color: #224F75;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+#Gold_Price {
+    color: #224F75;
+}
+
+.btn-remove {
+    color: white;
+    font-size: 1.5rem;
+    padding: 0;
+    line-height: 1;
+    display: none;
+}
+
+.add-currency-btn {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#currencyDropDownList {
+    max-height: 210px;
+    overflow-y: auto;
+}
+
+#toCurrency {
+    max-height: 110px;
+    overflow-y: auto;
+}
+
+#fromCurrency {
+    max-height: 110px;
+    overflow-y: auto;
+}
+
+.currency-preview {
+    background-color: #224F75;
+    color: white;
+}
+
+
+@media (max-width: 1200px) {
+    .preview-div{
+        flex-direction: column;
+        gap:0;
+    }
+    .gold-container{
+        height: 2em;
+        margin-top: -4em;
+    }
+    .select-currencies-container{
+        flex-direction: column;
+    }
+    .service-currency{
+        flex-direction: column;
+    }
+    .currencies-main-view{
+        flex-direction: column;
+    }
+    .service-buttons{
+        gap:4em;
+    }
+    #convertButton{
+        width: fit-content;
+    }
+    #chartButton{
+        width: fit-content;
+    }
+  }

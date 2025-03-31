@@ -1,0 +1,22 @@
+.low-res-colpreview {
+    display: flex;
+    flex-direction: row;
+}
+
+.orang {
+    background-color: #FACF55;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1050px) {
+    #icon {
+        display: none;
+    }
+}
+@media screen and (max-width: 620px) {
+    .low-res-colpreview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,10 @@
+flask
+flask_login
+flask_sqlalchemy
+flask_wtf
+flask_login 
+selenium
+bs4
+requests
+flask_limiter
+pytest

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-9" id="mcont">
+      <div id="inncont">
+        {{ info1|safe }}
+      </div>
+    <div id="inncont">
+        {{ info2|safe }}
+    </div>
+       <div id="inncont">
+        {{ info3|safe }}
+       </div>
+    </div>
+    <div class="col-lg-3" id="dane">
+      <div id="danecont">
+        <div id="dashboard_div">
+          <div id="Economy_chart_div"></div>
+          <div id="date_range_filter_div"></div>
+      </div>
+      <select id="dataSelector" onchange="updateChart()">
+        <option value="gold">Złoto</option>
+        <option value="PLN">PLN-USD</option>
+    </select>
+    </div>
+    <div id="danecont">
+      <label for="citySelect" style="font-size: 12px;">Wybierz miasto:</label>
+    <select id="citySelect">
+      <option value="Kraków">Kraków</option>
+      <option value="Lublin">Lublin</option>
+      <option value="Gdańsk">Gdańsk</option>
+      <option value="Hel">Hel</option>
+      <option value="Chojnice">Chojnice</option>
+    </select>
+      <div id="Weather_chart_div" data="{{weather_data}}">
+    </div>
+    </div>
+       <div id="danecont">
+        {{ calendar|safe }}
+       </div>
+    </div>
+ </div>
+{% endblock %}

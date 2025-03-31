@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalendarz</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('news.static', filename='styles_calendar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('news.static', filename='script_calendar.js') }}">
+</head>
+<body>
+    <div class="calendar-container">
+        <button id="prev-month" class="month-button"><span>&larr;</span> Poprzedni Miesiąc</button>
+        <button id="next-month" class="month-button">Następny Miesiąc <span>&rarr;</span></button>
+        <div id="month-year" class="month-year"></div>
+        <div id="calendar" class="calendar"></div>
+        <div id="info-container" class="info-container">
+            <div class="date-info"><strong>Wybrana data:</strong> <span id="selected-date"></span></div>
+            <div><strong>Imieniny:</strong> <span id="namedays"></span></div>
+            <div><strong>Święta:</strong> <span id="holidays"></span></div>
+        </div>
+    </div>
+    <script src="{{ url_for('news.static', filename='script_calendar.js') }}"></script>
+</body>
+</html>

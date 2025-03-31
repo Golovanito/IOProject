@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    News Service
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('news.static', filename='news_style.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row align-items-center">
+    <div class="col-1"></div>
+    <div class="col">
+        {% include 'news_base.html' %}
+        {% if articles %}
+        <h2 class="mt-4">Wyniki wyszukiwania dla: {{ query }}</h2>
+
+        <div class="articles mt-4 " id="articles-container" >
+            {% for article in articles %}
+                <div class="card mt-3 article-item">
+                    <div class="row g-0" style="max-height: 300px;">
+                    <div class="col-md-4" >
+                        <div style="width: 100%; height: 300px; overflow: hidden;">
+                        <img src="{{article.photo}}" style="width: 100%; height: 100%;" class="img-fluid rounded-start object-fit-cover" alt="picture">
+                        </div>
+                    </div>
+                    <div class="col-md-8" style="display: flex; align-items: center">
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="{{ article.links }}" target="_blank" style="text-decoration:none">{{ article.titles }}</a></h3>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{ article.date }}</h6>
+                            <p class="card-text">{{ article.description }}</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <h2 class="mt-4">Nie znaleziono wiadomości, w których występuje podane słowo</h2>
+        {% endif %}
+    </div>
+<div class="col-1"></div>
+    
+
+
+{% endblock %}
+
+

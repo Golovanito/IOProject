@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Ekonomic Service - Currency
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('economy.static', filename='style.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{{ url_for('economy.static', filename='script.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+<main>
+    <section class="section1 container">
+        <div>
+            <div class="service-text">
+                <h1>
+                    Serwis Ekonomiczny
+                </h1>
+            </div>
+            
+            <div class="service-data">
+                <!-- Top Choice Buttons -->
+                <div class="service-choice container text-center row row-cols-4">
+                    <a href="{{url_for('economy.EcoHome')}}" class="btn btn-light" id="CurrencyViewButton">Waluty</a>
+                    <a href="{{url_for('economy.EcoGold')}}"class="btn btn-light" id="GoldViewButton">Złoto</a>
+                </div>
+                {% block Economy_dynamic_content %}
+                {% endblock %}
+                
+            </div>
+        </div>
+    </section>
+    
+    <div id="conversionResult" class="text-center py-3">
+        <!-- Converted value will appear here -->
+    </div>
+
+    <div id="chartWeek_div"></div>
+    <!-- <div id="chartMonth_div"></div>
+    <div id="chartHalfYear_div"></div> -->
+    <div id="chartContainer" class="container text-center mt-2">
+        
+    </div>
+
+    <section class="container">
+        <div class="section2">
+            <div class="service-live-text text-center">
+                <h2>
+                    Porównanie walut w czasie rzeczywistym
+                </h2>
+            </div>
+
+            <div class="serivce-live-container my-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <!-- Removed Inverse Switch -->
+                        <div></div>
+                    <button id="editButton" class="btn btn-outline-light align-self-end" onclick="toggleEditMode()">Edytuj</button>
+                </div>
+            
+                <!-- Currency Header Row -->
+                <div class="row text-center fw-bold mb-2">
+                    <div class="text1 col-4">Waluta</div>
+                    <div class="text1 col-4">Ilość</div>
+                    <div class="text1 col-4">Zmiana (24h)</div>
+                </div>
+            
+                <!-- Currency List -->
+                <div class="currency-list">
+                    <!-- USD Active Row (Cannot be deleted) -->
+                    <div class="currency-row currency-active row text-center">
+                        <div class="col-4 text-center">PLN - polski złoty</div>
+                        <div class="col-4  text-center">1</div>
+                        <div class="col-4 text-center">
+                            <!-- Delete button is hidden for USD  -->
+                            <span class="btn-remove d-none">&#x2212;</span>
+                        </div>
+                    </div>
+            
+                </div>
+            
+                <!-- Add Currency Button -->
+                <button id="addCurrencyBtn" class="btn add-currency-btn btn-light" onclick="showAddCurrency()">+ Dodaj Walutę</button>
+            
+                <!-- Add Currency Dropdown -->
+                <div class="dropup mt-2 d-none" id="currencyDropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        Wybierz Walutę
+                    </button>
+                    <ul id="currencyDropDownList" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p class="PageView" id={{test}}></p>
+</main>
+{% endblock %}

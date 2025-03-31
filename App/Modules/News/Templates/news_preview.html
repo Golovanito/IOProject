@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('news.static', filename='news_style.css') }}">
+    
+
+</head>
+
+<body>
+    <h4 class="m-1">Ostatnie wiadomości kryminalne z Krakowa:</h4>
+
+    <div class="articles " id="articles-container">
+            <div class="card m-3 article-item" >
+                <div class="row g-0" style="max-height: 200px;">
+                    <div class="col-md-4">
+                        <div style="width: 100%; height: 200px; overflow: hidden;">
+                            <img id="article-photo" src="{{articles[0].photo}}" style="width: 100%; height: 100%;" class="img-fluid rounded-start object-fit-cover" alt="picture">
+                        </div>
+                    </div>
+                    <div class="col-md-8" style="display: flex; align-items: center">
+                        <div class="card-body">
+                            <a id="article-link" href="{{ articles[0].links }}" target="_blank" style="text-decoration:none; text-align: left; display: flex;"><h3 id="article-title" class="card-title preview">{{ articles[0].titles }}</h3></a>
+                            <h6 id="article-date" class="card-subtitle mb-2 text-body-secondary">{{ articles[0].date }}</h6>
+                            <p style="text-align: left;" id="article-description" class="card-text preview">{{ articles[0].description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="text-center m-1">
+        <button id="next-article-btn" class="btn btn-primary">Następna wiadomość</button>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Dane artykułów (symulacja - powinny pochodzić z backendu)
+    const articles = [
+        {% for article in articles %}
+            {
+                photo: "{{ article.photo }}",
+                links: "{{ article.links }}",
+                titles: "{{ article.titles }}",
+                date: "{{ article.date }}",
+                description: "{{ article.description }}"
+            },
+        {% endfor %}
+    ];
+
+    let currentIndex = 0;
+
+    // Funkcja zmieniająca artykuł
+    function displayArticle(index) {
+        document.getElementById('article-photo').src = articles[index].photo;
+        document.getElementById('article-link').href = articles[index].links;
+        document.getElementById('article-title').innerText = articles[index].titles;
+        document.getElementById('article-date').innerText = articles[index].date;
+        document.getElementById('article-description').innerText = articles[index].description;
+    }
+
+    // Obsługa przycisku
+    document.getElementById('next-article-btn').addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % articles.length; // Cykl przez artykuły
+        displayArticle(currentIndex);
+    });
+});
+    </script>
+
+</body>
+</html>

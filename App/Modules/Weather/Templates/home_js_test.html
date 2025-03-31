@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Unit Tests</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.4.css">
+    <script src="https://code.jquery.com/qunit/qunit-2.19.4.js"></script>
+    <script src="{{ url_for('weather.static', filename='home.js') }}"></script>
+</head>
+<body>
+    <h1>Unit Tests for Home.js</h1>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+    <script>
+        let s = ''
+        function getWeatherTestResults(data) {
+            fetch("/weather/weather_test_results", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+        }
+        QUnit.log(details => {
+            s += `${details.result ? 'PASS' : 'FAIL'}: ${details.message} - Expected: ${details.expected}, Actual: ${details.actual}\n`
+            console.log(
+                `${details.result ? 'PASS' : 'FAIL'}: ${details.message} - Expected: ${details.expected}, Actual: ${details.actual}`
+            );
+        });
+
+        QUnit.done(details => {
+            console.log(`Total Tests: ${details.total}`);
+            console.log(`Passed: ${details.passed}`);
+            console.log(`Failed: ${details.failed}`);
+            console.log(`Runtime: ${details.runtime}ms`);
+            s += `Total Tests: ${details.total}\nPassed: ${details.passed}\nFailed: ${details.failed}\nRuntime: ${details.runtime}ms`
+            getWeatherTestResults(s)
+        });
+        // Replace Polish Characters
+        QUnit.test("replacePolishChars function", assert => {
+            const input = "Łódź";
+            const output = replacePolishChars(input);
+            assert.equal(output, "Lodz", "Correctly replaces Polish characters.");
+        });
+
+        // Capitalize First Letter
+        QUnit.test("capitalizeFirstLetter function", assert => {
+            assert.equal(capitalizeFirstLetter("gdańsk"), "Gdańsk", "Capitalizes the first letter of the word.");
+            assert.equal(capitalizeFirstLetter(""), "", "Handles empty strings correctly.");
+        });
+
+        // API Calls (Mocked Test)
+        QUnit.test("updateWeatherWidget function (mocked)", async assert => {
+            const done = assert.async();
+
+            const mockButton = document.createElement("button");    
+            mockButton.value ="openweathermap-widget-15-1";
+            mockButton.id = 'modal-button-1';
+            const mockDiv = document.createElement("div");
+            document.body.appendChild(mockButton)
+            mockButton.appendChild(mockDiv)
+
+            const mockWidgetContainer = document.createElement("div");
+            mockWidgetContainer.id = "openweathermap-widget-container1";
+            document.body.appendChild(mockWidgetContainer);
+
+            const mockForecast1 = document.createElement("p");
+            mockForecast1.id = "forecast11";
+            document.body.appendChild(mockForecast1);
+            
+            const mockForecast2 = document.createElement("p");
+            mockForecast2.id = "forecast12";
+            document.body.appendChild(mockForecast2);
+            
+            const mockForecast3 = document.createElement("p");
+            mockForecast3.id = "forecast13";
+            document.body.appendChild(mockForecast3);
+            
+            const mockForecast4 = document.createElement("p");
+            mockForecast4.id = "forecast14";
+            document.body.appendChild(mockForecast4);
+            
+            const mockForecast5 = document.createElement("p");
+            mockForecast5.id = "forecast15";
+            document.body.appendChild(mockForecast5);
+
+            const mockForecastDate1 = document.createElement("p");
+            mockForecastDate1.id = "forecastDate11";
+            document.body.appendChild(mockForecastDate1);
+            
+            const mockForecastDate2 = document.createElement("p");
+            mockForecastDate2.id = "forecastDate12";
+            document.body.appendChild(mockForecastDate2);
+            
+            const mockForecastDate3 = document.createElement("p");
+            mockForecastDate3.id = "forecastDate13";
+            document.body.appendChild(mockForecastDate3);
+            
+            const mockForecastDate4 = document.createElement("p");
+            mockForecastDate4.id = "forecastDate14";
+            document.body.appendChild(mockForecastDate4);
+            
+            const mockForecastDate5 = document.createElement("p");
+            mockForecastDate5.id = "forecastDate15";
+            document.body.appendChild(mockForecastDate5);
+
+            await updateWeatherWidget("Gdańsk", 1);
+            assert.ok(document.getElementById("openweathermap-widget-container1"), "Widget container updated correctly.");
+            document.body.removeChild(mockButton);
+            document.body.removeChild(mockWidgetContainer);
+            document.body.removeChild(mockForecast1);
+            document.body.removeChild(mockForecast2);
+            document.body.removeChild(mockForecast3);
+            document.body.removeChild(mockForecast4);
+            document.body.removeChild(mockForecast5);
+            document.body.removeChild(mockForecastDate1);
+            document.body.removeChild(mockForecastDate2);
+            document.body.removeChild(mockForecastDate3);
+            document.body.removeChild(mockForecastDate4);
+            document.body.removeChild(mockForecastDate5);
+            done();
+        });
+
+        // Check Select Container Show/Hide
+        QUnit.test("showSelectContainer function", assert => {
+            const mockContainer = document.createElement("div");
+            mockContainer.id = "selectContainer1";
+            mockContainer.classList.add("selectContainer");
+            mockContainer.classList.add("inputButtonHide");
+            document.body.appendChild(mockContainer);
+
+            const mockWidgetContainer = document.createElement("div");
+            mockWidgetContainer.id = "dataContainer1";
+            document.body.appendChild(mockWidgetContainer);
+
+            showSelectContainer();
+            assert.notOk(mockContainer.classList.contains("inputButtonHide"), "Shows a hidden container.");
+
+            document.body.removeChild(mockContainer);
+        });
+
+        QUnit.test("hideSelectContainer function", assert => {
+            const mockButton = document.createElement("button");
+            mockButton.value = 1;
+
+            const mockContainer = document.createElement("div");
+            mockContainer.id = "selectContainer1";
+            mockContainer.classList.add("selectContainer")
+            mockContainer.classList.add("selectContainerShow")
+            document.body.appendChild(mockContainer);
+
+            const mockCitySelectButton = document.createElement("button");
+            mockCitySelectButton.id = "citySelect1"
+            document.body.appendChild(mockCitySelectButton)
+
+            
+            const mockWidgetContainer = document.createElement("div");
+            mockWidgetContainer.id = "dataContainer1";
+            document.body.appendChild(mockWidgetContainer);
+
+            hideSelectContainer(mockButton);
+            
+            
+
+            assert.ok(mockContainer.classList.contains('inputButtonHide'), "Hides the container.");
+            assert.equal(mockContainer.style.display, "none", "Hides the container.");
+            
+            document.body.removeChild(mockContainer);
+            document.body.removeChild(mockWidgetContainer);
+            document.body.removeChild(mockCitySelectButton)
+        });
+    </script>
+</body>
+</html>

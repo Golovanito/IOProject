@@ -1,0 +1,47 @@
+{% extends "economyBase.html" %}
+
+{% block Economy_dynamic_content %}
+
+
+                <div class="service-currency container text-center">
+                    <!-- Amount Input -->
+                    <div class="currencies-main-view">
+                        <div>
+                            <div class="select-input input-group amount">
+                                <span class="input-group-text">$</span>
+                                <input type="number" id="amountInput" class="form-control" placeholder="Amount" min="0.01" step="0.01">
+                            </div>
+                        </div>
+                        
+                        <!-- From and To Currency Selectors with Switch Button -->
+                        <div class="exchange align-self-end">
+                            <div class="select-currencies-container align-items-center">
+                                <!-- From Currency Selector -->
+                                <div class="col">
+                                    <select id="fromCurrency" class="select-input form-select">
+                                    </select>
+                                </div>
+                                
+                                <!-- Switch Button -->
+                                <div class="col-md-auto">
+                                    <button type="button" class="btn btn-light switch-button" id="switchBtn">
+                                        &#8644;
+                                    </button>
+                                </div>
+                                
+                                <!-- To Currency Selector -->
+                                <div class="col">
+                                    <select id="toCurrency" class="select-input form-select">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="service-buttons container text-center row justify-content-between">
+                    <button id="chartButton" type="button" class="col-3 btn btn-lg btn-light">Wykres</button>
+                    <button id="convertButton" type="button" class="col-3 btn btn-lg">Konwertuj</button>
+                </div>
+{% endblock %}
+

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    News Service
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('news.static', filename='news_style.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row align-items-center">
+    <div class="col-1"></div>
+    <div class="col">
+        {% include 'news_base.html' %}
+        {% if articles %}
+        <div class="articles mt-4 " id="articles-container" >
+            {% for article in articles %}
+                <div class="card mt-3 article-item">
+                    <div class="row g-0" style="max-height: 300px;">
+                    <div class="col-md-4" >
+                        <div style="width: 100%; height: 300px; overflow: hidden;">
+                        <img src="{{article.photo}}" style="width: 100%; height: 100%;" class="img-fluid rounded-start object-fit-cover" alt="picture">
+                        </div>
+                    </div>
+                    <div class="col-md-8" style="display: flex; align-items: center">
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="{{ article.links }}" target="_blank" style="text-decoration:none">{{ article.titles }}</a></h3>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{ article.date }}</h6>
+                            <p class="card-text">{{ article.description }}</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p>Brak wiadomości do wyświetlenia na tej stronie.</p>
+        {% endif %}
+    
+
+    {% if page == 1 %}
+    <button type="button" class="btn btn-primary mt-3 mb-2" id="show-more">Pokaż więcej</button>
+    {% endif %}
+
+    <div class="mt-3">
+            {% if page > 1 %}
+            <button type="button" class="btn btn-primary mb-2" id="previous-page">
+                <a href="{{ url_for('news.news', page=page-1) }}" style="text-decoration:none; color: white;">Poprzednia</a>
+            </button>  
+            {% endif %}
+            {% if page < 5 %}
+            <button type="button" class="btn btn-primary d-none mb-2" id="next-page">
+                <a href="{{ url_for('news.news', page=page+1) }}" style="text-decoration:none; color: white;">Następna</a>
+            </button>
+            {% endif %}
+    </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Liczba artykułów widocznych na początku
+            const initialArticles = 3;
+    
+            // Pobranie elementów DOM
+            const articlesContainer = document.getElementById('articles-container');
+            const showMoreButton = document.getElementById('show-more');
+            const nextPageButton = document.getElementById('next-page');
+    
+            // Pobranie wszystkich artykułów
+            const articles = Array.from(articlesContainer.getElementsByClassName('article-item'));
+    
+            // Sprawdź, czy jesteśmy na pierwszej stronie
+            const currentPage = parseInt('{{ page }}', 10);
+    
+            if (currentPage === 1) {
+                // Ukryj artykuły poza pierwszymi 3
+                articles.forEach((article, index) => {
+                    if (index >= initialArticles) {
+                        article.style.display = 'none'; // Ukryj pozostałe artykuły
+                    }
+                });
+    
+                // Obsługa kliknięcia przycisku "Show More"
+                if (showMoreButton) {
+                    showMoreButton.addEventListener('click', function () {
+                        // Pokaż kolejne artykuły (maksymalnie do 10)
+                        articles.forEach((article, index) => {
+                            if (index < 10) {
+                                article.style.display = 'block'; // Pokaż artykuły
+                            }
+                        });
+    
+                        // Schowaj przycisk "Show More" i pokaż "Next"
+                        showMoreButton.style.display = 'none'; // Schowaj przycisk
+                        nextPageButton.classList.remove('d-none'); // Pokaż przycisk "Next"
+                    });
+                }
+            } else {
+                // Jeśli nie jesteśmy na pierwszej stronie, pokaż wszystkie artykuły
+                articles.forEach((article) => {
+                    article.style.display = 'block'; // Pokaż wszystkie artykuły
+                    nextPageButton.classList.remove('d-none');
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+@media (max-width: 768px) { 
+    .article-item .row {
+        max-height: none !important; 
+    }
+    .article-item img,div {
+        height: auto !important; 
+    }
+}
+@media (max-width: 975px) and (min-width: 768px) { 
+    .card-title {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .card-text {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    
+}
+
+@media (max-width: 1720px) and (min-width: 765px) { 
+    .card-text.preview {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .card-title.preview{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    
+}
+
